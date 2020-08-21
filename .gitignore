@@ -1,0 +1,33 @@
+# general
+.
+..
+
+# env
+.env
+*.env
+
+# npm
+node_modules/
+package.json
+package-lock.json
+
+# sls
+.serverless/
+
+# python
+__pycache__
+*.pyc
+
+
+# vscode
+.vscode
+
+
+# driver selenim
+driver/
+selenium/
+
+# *.otf 
+# e.g. NotoSansCJKjp-Regular.otf
+*.otf
+

@@ -1,0 +1,61 @@
+service: lambda
+
+custom:
+  dotenv:
+    basePath: ./config/
+  projectDir: ${env:projectDir}
+  pythonVer: python3.7
+  stage: ${env:STAGE}
+  region: ${env:REGION}
+  timeout: 900
+  seleniumLayer: selenium-layer
+
+provider:
+  name: aws
+  runtime: ${self:custom.pythonVer}
+  stage: ${self:custom.stage}
+  region: ${self:custom.region}
+  timeout: ${self:custom.timeout}
+  environment:
+    SELENIUM_LAYER_SERVICE: ${self:custom.seleniumLayer}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - "lambda:InvokeFunction"
+        - "lambda:InvokeAsync"
+        - "s3:ListBucket"
+        - "s3:GetObject"
+        - "s3:PutObject"
+        - "s3:DeleteObject"
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:s3:::"
+            - ${self:custom.projectDir}-${self:custom.stage}
+            - "/*"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+functions:
+  main:
+    handler: handler.main
+    layers:
+      - ${cf:${self:custom.seleniumLayer}-${self:custom.stage}.SeleniumLayerExport}
+      - ${cf:${self:custom.seleniumLayer}-${self:custom.stage}.ChromedriverLayerExport}
+    environment:
+      S3BUCKET: ${self:custom.projectDir}-${self:custom.stage}
+    events:
+      - schedule: cron(0/10 * * * ? *)  # 毎日10分おき
+package:
+  include: 
+    - '.fonts/**'
+
+resources:
+  Resources:
+    Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.projectDir}-${self:custom.stage}

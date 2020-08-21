@@ -1,0 +1,42 @@
+service: selenium-layer
+
+custom:
+  dotenv:
+    basePath: ./config/
+  pythonVer: python3.7
+  stage: ${env:STAGE}
+  region: ${env:REGION}
+
+provider:
+  name: aws
+  runtime: ${self:custom.pythonVer}
+  stage: ${self:custom.stage}
+  region: ${self:custom.region}
+
+plugins:
+  - serverless-dotenv-plugin
+
+layers:
+  selenium:
+    path: selenium
+    description: selenium layer
+    CompatibleRuntimes:
+      - ${self:custom.pythonVer}
+  chromedriver:
+    path: driver
+    description: chrome driver layer
+    CompatibleRuntimes:
+      - ${self:custom.pythonVer}
+
+resources:
+  Outputs:
+    SeleniumLayerExport:
+      Value:
+        Ref: SeleniumLambdaLayer
+      Export:
+        Name: SeleniumLambdaLayer
+    ChromedriverLayerExport:
+      Value:
+        Ref: ChromedriverLambdaLayer
+      Export:
+        Name: ChromedriverLambdaLayer
