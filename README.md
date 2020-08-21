@@ -29,9 +29,9 @@ $ . install.sh
 - Install serverless framework and modify config/.env
 ```
 $ sudo npm install -g serverless
-$ cd selenium-layer \
-> && npm init \
-> && sudo npm install --save serverless-dotenv-plugin
+$ cd selenium-layer
+$ npm init
+$ sudo npm install --save serverless-dotenv-plugin
 $ cat config/.env.tmpl > config/.env
 $ pip install -t selenium/python/lib/python3.7/site-packages selenium
 ```
@@ -44,9 +44,9 @@ $ serverless deploy
 
 - Prepare before deploying a Python Program with sls command
 ```
-$ cd lambda \
-> &&  npm init \
-> && sudo npm install --save serverless-python-requirements \
+$ cd lambda
+$ npm init
+$ sudo npm install --save serverless-python-requirements \
 > && sudo npm install --save serverless-dotenv-plugin \
 > && sudo npm install --save serverless-offline
 
@@ -55,6 +55,7 @@ $ cat config/.env.tmpl > config/.env
 
 - Deploy it!
 ```
+$ serverless print
 $ serverless deploy
 ```
 
@@ -67,8 +68,8 @@ $ serverless deploy
     - SDK: 2.2.1
     - Components Core: 1.1.2
     - Components CLI: 1.4.0
-- ChromeDriver 2.37.544315
-- Headless Chromium v1.0.0-41
+- ChromeDriver 2.40
+- Headless Chrome v1.0.0-55
 
 ### AWS Lambda
 - Python 3.7
@@ -106,3 +107,10 @@ gkz@local ~/serverless-chrome (master) $ tree -L 2
 - `selenium.common.exceptions.WebDriverException: Message: chrome not reachable`
     - Check the following issues
     - [adieuadieu/serverless-chrome/issues/133](https://github.com/adieuadieu/serverless-chrome/issues/133)
+
+
+https://chromedriver.storage.googleapis.com/
+
+https://chromedriver.chromium.org/downloads
+
+https://github.com/adieuadieu/serverless-chrome/releases

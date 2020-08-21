@@ -8,6 +8,7 @@ custom:
   stage: ${env:STAGE}
   region: ${env:REGION}
   timeout: 900
+  TZ: Asia/Tokyo
   seleniumLayer: selenium-layer
 
 provider:
@@ -18,6 +19,7 @@ provider:
   timeout: ${self:custom.timeout}
   environment:
     SELENIUM_LAYER_SERVICE: ${self:custom.seleniumLayer}
+    TZ: ${self:custom.TZ}
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
@@ -48,10 +50,20 @@ functions:
     environment:
       S3BUCKET: ${self:custom.projectDir}-${self:custom.stage}
     events:
-      - schedule: cron(0/10 * * * ? *)  # 毎日10分おき
+#      - schedule: cron(0/20 * * * ? *)  # 毎日20分おき
+      - schedule:
+        name: run-scraper-per-2hour
+        description: 'schedule of scraper'
+        rate: rate(2 hours)  # 毎日120分おき
 package:
   include: 
     - '.fonts/**'
+
+# Modes for config validation. 
+##`error` throws an exception, 
+##`warn` logs error to console, 
+##`off` disables validation at all. The default is warn.
+configValidationMode: off
 
 resources:
   Resources:
