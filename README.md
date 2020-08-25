@@ -69,9 +69,10 @@ $ serverless deploy
     - Components Core: 1.1.2
     - Components CLI: 1.4.0
 - ChromeDriver 2.40
-- Headless Chrome v1.0.0-55
+- Headless Chrome v1.0.0-45
 
 ### AWS Lambda
+- Amazon Linux
 - Python 3.7
 
 ## Notes
