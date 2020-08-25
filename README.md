@@ -21,7 +21,7 @@ $ git clone https://github.com/gkzz/serverless-scraper.git \
 && cd serverless-scraper
 ```
 
-- Download chromedriver and headless-chrome
+- Install chromedriver and headless-chrome
 ```
 $ . install.sh
 ```
