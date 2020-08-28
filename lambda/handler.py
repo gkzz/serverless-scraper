@@ -52,8 +52,8 @@ def set_selenium_options():
 def wait_until_element_present(driver, key, location):
     """ Wait until element is presented at location """
     elm = None
-    counter = 4
-    timeup = 20
+    counter = 0
+    timeup = 10
     while counter < timeup:
         try:
             elm = WebDriverWait(driver, counter).until(
@@ -61,12 +61,12 @@ def wait_until_element_present(driver, key, location):
         except NoSuchElementException as e:
             logger.warn("[WARN] {e}".format(e=e))
             logger.warn("counter: {val}".format(val=counter))
-            counter += 2
+            counter += 1 
             continue
         except TimeoutException as e:
             logger.warn("[WARN] {e}".format(e=e))
             logger.warn("counter: {val}".format(val=counter))
-            counter += 2
+            counter += 1
             continue
         else:
             break

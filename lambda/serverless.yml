@@ -52,9 +52,9 @@ functions:
     events:
 #      - schedule: cron(0/20 * * * ? *)  # 毎日20分おき
       - schedule:
-        name: run-scraper-per-2hour
-        description: 'schedule of scraper'
-        rate: rate(2 hours)  # 毎日120分おき
+          name: run-scraper-per-2hour
+          description: 'schedule of scraper'
+          rate: rate(2 hours)  # 毎日120分おき
 package:
   include: 
     - '.fonts/**'
