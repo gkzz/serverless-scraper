@@ -50,10 +50,10 @@ functions:
     environment:
       S3BUCKET: ${self:custom.projectDir}-${self:custom.stage}
     events:
-#      - schedule: cron(0 */2 * * *)  # 毎日20分おき
+#      - schedule: cron(0/40 * * * ? *)  # 毎日40分おき
 #      - schedule:
-#          rate: rate(2 hours)  # 毎日120分おき
-      - schedule: cron(30 * * * ? *)
+#          rate: rate(2 hours)  # 毎日N時03分おき
+      - schedule: cron(3 * * * ? *)
 package:
   include: 
     - '.fonts/**'
