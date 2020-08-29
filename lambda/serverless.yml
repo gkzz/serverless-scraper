@@ -50,11 +50,10 @@ functions:
     environment:
       S3BUCKET: ${self:custom.projectDir}-${self:custom.stage}
     events:
-#      - schedule: cron(0/20 * * * ? *)  # 毎日20分おき
-      - schedule:
-          name: run-scraper-per-2hour
-          description: 'schedule of scraper'
-          rate: rate(2 hours)  # 毎日120分おき
+#      - schedule: cron(0 */2 * * *)  # 毎日20分おき
+#      - schedule:
+#          rate: rate(2 hours)  # 毎日120分おき
+      - schedule: cron(30 * * * ? *)
 package:
   include: 
     - '.fonts/**'
