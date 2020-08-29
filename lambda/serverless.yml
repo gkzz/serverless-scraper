@@ -51,9 +51,7 @@ functions:
       S3BUCKET: ${self:custom.projectDir}-${self:custom.stage}
     events:
 #      - schedule: cron(0/40 * * * ? *)  # 毎日40分おき
-#      - schedule:
-#          rate: rate(2 hours)  # 毎日N時03分おき
-      - schedule: cron(3 * * * ? *)
+      - schedule: cron(3 * * * ? *) #毎日NN時03分おき
 package:
   include: 
     - '.fonts/**'
