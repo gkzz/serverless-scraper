@@ -110,8 +110,9 @@ gkz@local ~/serverless-chrome (master) $ tree -L 2
     - [adieuadieu/serverless-chrome/issues/133](https://github.com/adieuadieu/serverless-chrome/issues/133)
 
 
-https://chromedriver.storage.googleapis.com/
+## License
+Copyright (c) 2020 [gkz](https://gkz.mit-license.org/2020)
 
-https://chromedriver.chromium.org/downloads
+Licensed under the [MIT license](LICENSE).
 
-https://github.com/adieuadieu/serverless-chrome/releases
+Unless attributed otherwise, everything is under the MIT licence. Some stuff is not from me, and without attribution, and I no longer remember where I got it from. I apologize for that.
